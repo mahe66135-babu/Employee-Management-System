@@ -1,0 +1,31 @@
+import Navbar from "./Navbar";
+import Sidebar from "./Sidebar";
+
+function AdminLayout({ children }) {
+
+    return (
+
+        <>
+
+            <Navbar />
+
+            <div className="d-flex">
+
+                <Sidebar />
+
+                <div
+                    className="container-fluid p-4"
+                >
+
+                    {children}
+
+                </div>
+
+            </div>
+
+        </>
+
+    );
+}
+
+export default AdminLayout;

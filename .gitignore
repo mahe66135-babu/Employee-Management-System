@@ -1,0 +1,19 @@
+# IntelliJ
+.idea/
+
+# Backend
+EmployeeManagementSystem/target/
+
+# Frontend
+ems-frontend/node_modules/
+ems-frontend/dist/
+
+# Environment
+.env
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Logs
+*.log

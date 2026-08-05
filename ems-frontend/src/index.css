@@ -1,0 +1,29 @@
+.card{
+
+  border-radius:15px;
+
+}
+
+.table td{
+
+  vertical-align:middle;
+
+}
+
+.table th{
+
+  white-space:nowrap;
+
+}
+
+.table-responsive{
+
+  overflow-x:auto;
+
+}
+
+.btn{
+
+  border-radius:8px;
+
+}

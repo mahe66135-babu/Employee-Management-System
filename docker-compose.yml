@@ -1,0 +1,41 @@
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: ems-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Mahesh@2002
+      MYSQL_DATABASE: ems
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  backend:
+    build:
+      context: ./EmployeeManagementSystem
+    container_name: ems-backend
+    restart: always
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/ems
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: Mahesh@2002
+      JWT_SECRET: ThisIsMySuperSecretKeyForJWTAuthentication2026
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build:
+      context: ./ems-frontend
+    container_name: ems-frontend
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+
+volumes:
+  mysql-data:
