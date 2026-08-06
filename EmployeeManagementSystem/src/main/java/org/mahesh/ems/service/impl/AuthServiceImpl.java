@@ -78,10 +78,7 @@ public class AuthServiceImpl implements AuthService {
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        System.out.println("Entered Password: " + request.getPassword());
-        System.out.println("Stored Hash: " + user.getPassword());
-        System.out.println("Password Match: "
-                + passwordEncoder.matches(request.getPassword(), user.getPassword()));
+        System.out.println("User Found");
 
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -90,9 +87,14 @@ public class AuthServiceImpl implements AuthService {
                 )
         );
 
-        return jwtService.generateToken(user);
-    }
+        System.out.println("Authentication Success");
 
+        String token = jwtService.generateToken(user);
+
+        System.out.println("JWT Generated Successfully");
+
+        return token;
+    }
     @Override
     public void changePassword(String email,
                                ChangePasswordRequest request) {
