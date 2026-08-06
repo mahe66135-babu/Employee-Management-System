@@ -88,6 +88,8 @@ public class JwtService {
 //        return Keys.hmacShaKeyFor(keyBytes);
 //    }
     private Key getSigningKey() {
+        System.out.println(secret);
+        System.out.println(secret.length());
         return Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
     }
 
