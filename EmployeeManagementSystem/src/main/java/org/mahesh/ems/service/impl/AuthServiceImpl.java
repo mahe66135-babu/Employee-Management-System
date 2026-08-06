@@ -72,28 +72,43 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public String login(LoginRequest request) {
+        try {
+            System.out.println("=================================");
+            System.out.println("EMAIL RECEIVED = [" + request.getEmail() + "]");
+            System.out.println("PASSWORD RECEIVED = [" + request.getPassword() + "]");
 
-        System.out.println("========== LOGIN METHOD HIT ==========");
+            System.out.println("ALL USERS IN DB:");
+            userRepository.findAll().forEach(u ->
+                    System.out.println(u.getId() + " -> " + u.getEmail()));
 
-        User user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new RuntimeException("User not found"));
+            System.out.println("=================================");
 
-        System.out.println("User Found");
+            System.out.println("STEP 1");
 
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
-                        request.getPassword()
-                )
-        );
+            User user = userRepository.findByEmail(request.getEmail())
+                    .orElseThrow(() -> new RuntimeException("User not found"));
 
-        System.out.println("Authentication Success");
+            System.out.println("STEP 2");
 
-        String token = jwtService.generateToken(user);
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            request.getEmail(),
+                            request.getPassword()
+                    )
+            );
 
-        System.out.println("JWT Generated Successfully");
+            System.out.println("STEP 3");
 
-        return token;
+            String token = jwtService.generateToken(user);
+
+            System.out.println("STEP 4");
+
+            return token;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
     @Override
     public void changePassword(String email,

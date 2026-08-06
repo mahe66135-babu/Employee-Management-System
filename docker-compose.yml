@@ -24,6 +24,7 @@ services:
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: Mahesh@2002
       JWT_SECRET: ThisIsMySuperSecretKeyForJWTAuthentication2026
+      JWT_EXPIRATION: 86400000
     ports:
       - "8080:8080"
 
