@@ -82,6 +82,7 @@ public class AuthServiceImpl implements AuthService {
                     System.out.println(u.getId() + " -> " + u.getEmail()));
 
             System.out.println("=================================");
+            System.out.println("######## LOGIN DEBUG VERSION ########");
 
             System.out.println("STEP 1");
 
