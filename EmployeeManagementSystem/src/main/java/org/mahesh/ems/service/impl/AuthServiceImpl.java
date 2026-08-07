@@ -91,6 +91,7 @@ public class AuthServiceImpl implements AuthService {
             System.out.println("RAW PASSWORD = " + request.getPassword());
             System.out.println("DB PASSWORD = " + user.getPassword());
 
+            System.out.println(passwordEncoder.getClass().getName());
             System.out.println(
                     "PASSWORD MATCH = " +
                             passwordEncoder.matches(
@@ -98,6 +99,11 @@ public class AuthServiceImpl implements AuthService {
                                     user.getPassword()
                             )
             );
+            System.out.println("NEW HASH = " + passwordEncoder.encode("Mahesh@123"));
+            System.out.println("MATCH NEW HASH = " +
+                    passwordEncoder.matches(
+                            "Mahesh@123",
+                            passwordEncoder.encode("Mahesh@123")));
 
             System.out.println("STEP 2");
 
