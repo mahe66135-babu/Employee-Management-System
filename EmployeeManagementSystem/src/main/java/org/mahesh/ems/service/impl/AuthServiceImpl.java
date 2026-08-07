@@ -88,6 +88,16 @@ public class AuthServiceImpl implements AuthService {
 
             User user = userRepository.findByEmail(request.getEmail())
                     .orElseThrow(() -> new RuntimeException("User not found"));
+            System.out.println("RAW PASSWORD = " + request.getPassword());
+            System.out.println("DB PASSWORD = " + user.getPassword());
+
+            System.out.println(
+                    "PASSWORD MATCH = " +
+                            passwordEncoder.matches(
+                                    request.getPassword(),
+                                    user.getPassword()
+                            )
+            );
 
             System.out.println("STEP 2");
 
