@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import API from "../api/axiosConfig";
+import API from "../../api/axiosConfig";
 
 function Register() {
     const navigate = useNavigate();
