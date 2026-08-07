@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import axios from "axios";
+import API from "../api/axiosConfig";
 
 function Register() {
     const navigate = useNavigate();
@@ -42,7 +42,7 @@ function Register() {
         }
 
         try {
-            await axios.post("http://localhost:8080/api/auth/register", {
+            await API.post("/auth/register", {
                 name: `${formData.firstName} ${formData.lastName}`,
                 email: formData.email,
                 password: formData.password
